@@ -1,0 +1,6 @@
+URxvt*scrollBar: false
+URxvt*background: black
+URxvt*foreground: orange
+URxvt*font: xft:LiberationMono-Regular:size=10
+Xterm*background: black
+Xterm*foreground: yellow
