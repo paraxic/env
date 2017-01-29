@@ -1,3 +1,5 @@
+" Sombra is based off of Seattle by MingBai <mbbill at gmail.com> -- paraxic "
+"                                                  "
 " Seattle
 " An elegant yet efficient color scheme for coders
 " Author: MingBai <mbbill at gmail.com>
