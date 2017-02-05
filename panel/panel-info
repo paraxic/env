@@ -1,0 +1,102 @@
+#!/bin/bash
+#
+# Author: paraxic
+# Version: 0.10 
+# Date: 02/04/2017
+#
+# Desc: panel-info for lemonbar
+
+bg_color="%{B#"
+fg_color="%{F#"
+#deco colors
+deco_red="FB2014}"
+deco_black="141314}"
+deco_white="FFFFFD}"
+deco_blue="040F2D}"
+deco_orange="FB3F04}"
+deco_purple="3C2637}"
+deco_green="859B47}"
+
+#bspwm vars
+num_of_desktops=$(bspc query -D | wc -l)
+current_desktop=$(bspc query -D focused -d)
+desk_one=
+desk_two=
+desk_three=
+desk_four=
+
+#stat vars
+wifi_name=
+function color_reset() {
+	echo -n "%{F-}%{B-}"
+}
+
+function get_current_desktop(){
+	current_desktop=$(bspc query -D focused -d)
+}
+
+function get_all_desktops(){
+	desk_one=$(bspc query -D | cut -f1 -d$'\n')
+	desk_two=$(bspc query -D | cut -f2 -d$'\n')
+	desk_three=$(bspc query -D | cut -f3 -d$'\n')
+	desk_four=$(bspc query -D | cut -f4 -d$'\n')
+}
+
+function clock() {
+	TIME=$(date +"%r")
+	DATE=$(date +"%D")
+	echo -n " $DATE "
+	echo -n " $TIME "
+	color_reset
+}
+
+function print_desktop(){
+
+if [[ $current_desktop == $desk_one ]]
+then
+	echo -n "$bg_color$deco_green"
+	echo -n " Code %{B-} Web Sys Other "
+fi
+
+if [[ $current_desktop == $desk_two ]]
+then
+	echo -n " Code $bg_color$deco_green Web %{B-} Sys Other "
+fi
+
+if [[ $current_desktop == $desk_three ]]
+then
+	echo -n " Code Web $bg_color$deco_green Sys %{B-} Other "
+fi
+
+if [[ $current_desktop == $desk_four ]]
+then
+	echo -n " Code Web Sys $bg_color$deco_green Other %{B-}"
+fi
+
+}
+function print_wifi_name(){
+	wifi_name=$(iwgetid | cut -f2 -d":" | sed s/\"//g)
+	if [[ $wifi_name != "Enumerated" ]]
+	then
+		wifi_name=" No Wifi "
+	fi
+	echo -n " $wifi_name "
+}
+#Setup
+get_all_desktops
+
+# Panel Loop
+while true; do
+	get_current_desktop
+	echo -n "$fg_color$deco_white"
+	echo -n "%{l}"
+	print_desktop	
+	color_reset
+	echo -n "$fg_color$deco_orange"
+	echo -n "$bg_color$deco_purple"
+	echo -n "%{r}"
+	print_wifi_name
+	echo "$(clock)"
+	color_reset
+	sleep 1
+done
