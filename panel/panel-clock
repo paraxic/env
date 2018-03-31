@@ -1,0 +1,41 @@
+#!/bin/bash
+#
+# Author: paraxic
+# Version: 0.10 
+# Date: 02/04/2017
+#
+# Desc: panel-info for lemonbar
+
+bg_color="%{B#"
+fg_color="%{F#"
+#deco colors
+deco_red="FB2014}"
+deco_black="141314}"
+deco_white="FFFFFD}"
+deco_blue="040F2D}"
+deco_orange="FB3F04}"
+deco_purple="3C2637}"
+deco_green="859B47}"
+
+#bspwm vars
+#stat vars
+wifi_name=
+function color_reset() {
+	echo -n "%{F-}%{B-}"
+}
+
+function clock() {
+	TIME=$(date +"%r")
+	DATE=$(date +"%D")
+	echo -n " $DATE "
+	echo " $TIME "
+	color_reset
+}
+
+# Panel Loop
+while true; do
+	echo -n "%{l}"
+	echo -n "$(clock)"
+	sleep 1
+	echo
+done

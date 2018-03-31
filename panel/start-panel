@@ -1,0 +1,6 @@
+#!/bin/bash
+sleep 2
+exec ~/.panel/panel-desktop | lemonbar -g 140x20+0+0 -d -B '#000000' &
+exec ~/.panel/panel-clock | lemonbar -g 140x20+1226+0 -d -B '#000000' &
+exec nm-applet &> /dev/null &
+exec stalonetray --icon-size=20 &

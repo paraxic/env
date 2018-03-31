@@ -54,34 +54,36 @@ function print_desktop(){
 
 if [[ $current_desktop == $desk_one ]]
 then
-	echo -n "$bg_color$deco_green"
-	echo -n " Code %{B-} Web Sys Other "
+	echo -n "$fg_color$deco_orange"
+	echo -n " Code*%{F-} Web  Sys  Other  "
 fi
 
 if [[ $current_desktop == $desk_two ]]
 then
-	echo -n " Code $bg_color$deco_green Web %{B-} Sys Other "
+	echo -n " Code $fg_color$deco_orange Web*%{F-} Sys  Other  "
 fi
 
 if [[ $current_desktop == $desk_three ]]
 then
-	echo -n " Code Web $bg_color$deco_green Sys %{B-} Other "
+	echo -n " Code  Web $fg_color$deco_orange Sys*%{F-} Other  "
 fi
 
 if [[ $current_desktop == $desk_four ]]
 then
-	echo -n " Code Web Sys $bg_color$deco_green Other %{B-}"
+	echo -n " Code  Web  Sys $fg_color$deco_orange Other* %{F-}"
 fi
 
 }
-function print_wifi_name(){
-	wifi_name=$(iwgetid | cut -f2 -d":" | sed s/\"//g)
-	if [[ $wifi_name != "Enumerated" ]]
-	then
-		wifi_name=" No Wifi "
-	fi
-	echo -n " $wifi_name "
-}
+
+#function print_wifi_name(){
+#	wifi_name=$(iwgetid | cut -f2 -d":" | sed s/\"//g)
+#	if [[ $wifi_name != "Enumerated" ]]
+#	then
+#		wifi_name=" No Wifi "
+#	fi
+#	echo -n " $wifi_name "
+#}
+
 #Setup
 get_all_desktops
 
@@ -92,11 +94,12 @@ while true; do
 	echo -n "%{l}"
 	print_desktop	
 	color_reset
-	echo -n "$fg_color$deco_orange"
-	echo -n "$bg_color$deco_purple"
-	echo -n "%{r}"
-	print_wifi_name
-	echo "$(clock)"
-	color_reset
+	echo
+	#echo -n "$fg_color$deco_orange"
+	#echo -n "$bg_color$deco_purple"
+	#echo -n "%{r}"
+	#print_wifi_name
+	#echo "$(clock)"
+	#color_reset
 	sleep 1
 done
